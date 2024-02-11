@@ -12,6 +12,7 @@ class ContactPage extends StatelessWidget{
         color: AppColors.contactContainerColorDark
       ),
     );
+
   }
 
 }
