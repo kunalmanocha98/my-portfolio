@@ -4,4 +4,7 @@ class AppStrings{
   static const String subtitle3 = "Apps!";
   static const String getInTouch = "Get in touch";
   static const String downloadCV = "Download CV";
+  static const String techStack = "Tech Stack";
+  static const String projects = "Projects";
+
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/components/module_title_widget.dart';
 import 'package:portfolio/modules/teckStack/model/tech_stack_model.dart';
 import 'package:portfolio/modules/teckStack/tech_stack_item_widget.dart';
+import 'package:portfolio/utils/strings.dart';
 
 import '../../utils/firebase_keys.dart';
 
@@ -27,7 +28,7 @@ class TechStackWidgetState extends State<TechStackWidget>{
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ModuleTitleWidget(title: "Tech Stack", color: techStackResponse!=null?techStackResponse!.color!:"8AFFFFFF"),
+        ModuleTitleWidget(title: AppStrings.techStack, color: techStackResponse!=null?techStackResponse!.color!:"8AFFFFFF"),
         const SizedBox(height: 24,),
         techStackResponse!=null?Row(
           mainAxisSize: MainAxisSize.min,
