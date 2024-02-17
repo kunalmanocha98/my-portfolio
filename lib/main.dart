@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/app_routes.dart';
 import 'modules/home/home_page.dart';
 import 'modules/test/test_page.dart';
+import 'firebase_options.dart';
 
-void main() {
+
+void main() async{
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -23,32 +29,14 @@ class MyAppState extends State<MyApp>{
       // onGenerateRoute: _routes(),
       initialRoute: Routes.initialRoute,
       routes: {
-        Routes.initialRoute: (context)=> HomePage(),
-        Routes.testRoute: (context)=> TestPage(),
+        Routes.initialRoute: (context)=> const TestPage(),
+        Routes.homeRoute: (context)=> const HomePage(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black87),
         useMaterial3: true,
       ),
     );
-  }
-
-  RouteFactory _routes() {
-    return (settings) {
-      switch(settings.name){
-        case Routes.initialRoute:{
-          return MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage(),
-          );
-        }
-        case Routes.testRoute:{
-          return MaterialPageRoute(
-            builder: (BuildContext context) => const TestPage(),
-          );
-        }
-      }
-      return null;
-    };
   }
 
 }
