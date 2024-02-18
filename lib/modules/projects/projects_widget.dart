@@ -35,7 +35,7 @@ class ProjectsWidgetState extends State<ProjectsWidget>{
             scrollDirection: Axis.horizontal,
             itemCount: projectsResponse?.projects?.length??0,
             itemBuilder: (BuildContext context, int index) {
-              return ProjectItemWidget(project:projectsResponse!.projects![index]);
+              return ProjectItemWidget(project:projectsResponse?.projects?[index]);
             },
           ),
         )

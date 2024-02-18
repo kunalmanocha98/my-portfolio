@@ -27,14 +27,19 @@ class ProjectsResponse {
 class ProjectItem {
   String? name;
   String? image;
-  Links? links;
+  List<Links>? links;
 
   ProjectItem({this.name, this.image, this.links});
 
   ProjectItem.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
-    links = json['links'] != null ? Links.fromJson(json['links']) : null;
+    if (json['links'] != null) {
+      links = [];
+      json['links'].forEach((v) {
+        links!.add(Links.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -42,30 +47,27 @@ class ProjectItem {
     data['name'] = name;
     data['image'] = image;
     if (links != null) {
-      data['links'] = links!.toJson();
+      data['links'] = links!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Links {
-  String? android;
-  String? ios;
-  String? web;
+  String? type;
+  String? link;
 
-  Links({this.android, this.ios, this.web});
+  Links({this.type, this.link});
 
   Links.fromJson(Map<String, dynamic> json) {
-    android = json['android'];
-    ios = json['ios'];
-    web = json['web'];
+    type = json['type'];
+    link = json['link'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['android'] = android;
-    data['ios'] = ios;
-    data['web'] = web;
+    data['type'] = type;
+    data['link'] = link;
     return data;
   }
 }
