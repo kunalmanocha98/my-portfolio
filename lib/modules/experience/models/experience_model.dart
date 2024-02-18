@@ -28,6 +28,7 @@ class ExperienceItem {
   String? location;
   String? fromDate;
   String? toDate;
+  int? index;
 
   ExperienceItem(
       {this.name,
@@ -35,7 +36,7 @@ class ExperienceItem {
         this.summary,
         this.location,
         this.fromDate,
-        this.toDate});
+        this.toDate,this.index});
 
   ExperienceItem.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -44,6 +45,7 @@ class ExperienceItem {
     location = json['location'];
     fromDate = json['fromDate'];
     toDate = json['toDate'];
+    index = json['index'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +56,7 @@ class ExperienceItem {
     data['location'] = location;
     data['fromDate'] = fromDate;
     data['toDate'] = toDate;
+    data['index'] = index;
     return data;
   }
 }

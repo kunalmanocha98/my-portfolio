@@ -41,6 +41,7 @@ class ExperienceWidgetState extends State<ExperienceWidget>{
     var db = FirebaseFirestore.instance;
     var data = (await db.collection(CollectionNames.experience).doc(DocumentNames.relevantExperience).get()).data();
     experienceResponse = ExperienceResponse.fromJson(data!);
+    experienceResponse!.experiences!.sort((a,b)=>a.index!.compareTo(b.index!));
     setState(() {});
   }
 

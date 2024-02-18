@@ -1,50 +1,87 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/modules/contact/model/contact_model.dart';
 import 'package:portfolio/utils/app_colors.dart';
+import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/utils/text_styles.dart';
+import 'package:url_launcher/link.dart' as link;
+import '../../utils/firebase_keys.dart';
 
-class ContactPage extends StatelessWidget {
-  const ContactPage({super.key});
+class ContactWidget extends StatefulWidget {
+  const ContactWidget({super.key});
+
+  @override
+  ContactWidgetState createState() => ContactWidgetState();
+}
+
+class ContactWidgetState extends State<ContactWidget> {
+  ContactResponse? contactResponse;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      decoration: BoxDecoration(
-          color: AppColors.contactContainerColorDark
-      ),
+      decoration: BoxDecoration(color: AppColors.contactContainerColorDark),
       child: Center(
         child: SizedBox(
           width: 600,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Contact", style: TextStyles.expTitleStyle,),
+              Text(
+                AppStrings.contact,
+                style: TextStyles.expTitleStyle,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 32.0),
-                child: Text("",
-                  style: TextStyles.expDescStyle,),
+                child: Text(
+                  contactResponse?.summary ?? "",
+                  style: TextStyles.expDescStyle,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 0.0, bottom: 20),
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.email_outlined, color: AppColors.appWhiteColor,),
+                      Icons.email_outlined,
+                      color: AppColors.appWhiteColor,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
-                      child: Text(
-                        "kunalmanocha98.com", style: TextStyles.expDescStyle,),
+                      child: SelectableText(
+                        contactResponse?.email ?? "",
+                        style: TextStyles.expDescStyle,
+                      ),
                     )
                   ],
                 ),
               ),
               Row(
-                children: List.generate(4, (index) => InkWell(onTap: () {},
-                    child: Padding(
-                      padding: EdgeInsets.only(left: index==0?0:8.0,right: 8),
-                      child: const Icon(Icons.add_box_outlined,
-                        color: AppColors.appWhiteColor,),
-                    ))),
+                children: List.generate(
+                    (contactResponse?.socialLinks ?? []).length,
+                    (index) => link.Link(
+                      uri: Uri.parse(contactResponse?.socialLinks?[index].socialLinkUrl??""),
+                      builder: (context, link.FollowLink? openLink) {
+                        return InkWell(
+                            onTap: openLink,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: index == 0 ? 0 : 8.0, right: 8),
+                              child: Image.network(
+                                contactResponse!.socialLinks![index].icon!,
+                                width: 20,
+                                height: 20,
+                              ),
+                            ));
+                      },
+                    )),
               ),
             ],
           ),
@@ -53,4 +90,14 @@ class ContactPage extends StatelessWidget {
     );
   }
 
+  void fetchData() async {
+    var db = FirebaseFirestore.instance;
+    var data = (await db
+            .collection(CollectionNames.profileCollection)
+            .doc(DocumentNames.contact)
+            .get())
+        .data();
+    contactResponse = ContactResponse.fromJson(data!);
+    setState(() {});
+  }
 }

@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -19,23 +19,23 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const PersonalWidget(),
-              const SizedBox(
+              PersonalWidget(),
+              SizedBox(
                 height: 100,
               ),
               TechStackWidget(),
-              const SizedBox(
+              SizedBox(
                 height: 100,
               ),
               ProjectsWidget(),
-              const SizedBox(
+              SizedBox(
                 height: 50,
               ),
-              const ExperienceWidget(),
-              const SizedBox(
+              ExperienceWidget(),
+              SizedBox(
                 height: 50,
               ),
-              const ContactPage()
+              ContactWidget()
             ],
           ),
         ),

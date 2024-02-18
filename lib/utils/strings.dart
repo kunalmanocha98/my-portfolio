@@ -6,5 +6,6 @@ class AppStrings{
   static const String downloadCV = "Download CV";
   static const String techStack = "Tech Stack";
   static const String projects = "Projects";
+  static const String contact = "Contact";
 
 }
