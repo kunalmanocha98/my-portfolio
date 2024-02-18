@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/text_styles.dart';
+import 'models/experience_model.dart';
 
 class ExperienceItemWidget extends StatelessWidget{
-  const ExperienceItemWidget({super.key});
+  final ExperienceItem experience;
+  const ExperienceItemWidget({super.key,required this.experience});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +16,27 @@ class ExperienceItemWidget extends StatelessWidget{
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: Text("Senior Software Engineer at Sidan Global Solutions",
-                style: TextStyles.expTitleStyle,),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${experience.designation}",style: TextStyles.expTitleStyle),
+                    Text("${experience.name}, ${experience.location}",
+                    style: TextStyles.expTitleStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70
+                    ),),
+                  ],
+                ),
               ),
               const SizedBox(width: 100,),
-              Text("August 2023 - present",
+              Text("${experience.fromDate} - ${experience.toDate}",
               style: TextStyles.expDateStyle,)
             ],
           ),
           const SizedBox(height: 12,),
-          Text("At Meta, I served as a  Software Engineer, focusing on the design and implementation of backend systems for the social media giant's dynamic platform. Working on projects that involved large-scale data processing and user engagement features, I leveraged my expertise to ensure seamless functionality and scalability.",
+          Text("${experience.summary}",
             style: TextStyles.expDescStyle,)
         ],
       ),

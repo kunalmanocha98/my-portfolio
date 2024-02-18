@@ -2,6 +2,7 @@ class CollectionNames {
   static const String profileCollection = "Profile";
   static const String techStackCollection = "TechStack";
   static const String projectsCollection = "Projects";
+  static const String experience = "Experience";
 }
 
 class DocumentNames {
@@ -12,6 +13,8 @@ class DocumentNames {
   static const String techStack = "techStack";
   //Projects
   static const String companyProjects = "companyProjects";
+  //Experience
+  static const String relevantExperience = "relevantExperience";
   
 }
 
