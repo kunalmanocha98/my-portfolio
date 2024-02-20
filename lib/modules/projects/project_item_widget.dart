@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/modules/projects/enum/link_type_enum.dart';
 import 'package:portfolio/modules/projects/models/project_model.dart';
 import 'package:portfolio/utils/app_colors.dart';
+import 'package:portfolio/utils/app_logic.dart';
 import 'package:portfolio/utils/text_styles.dart';
 
 class ProjectItemWidget extends StatelessWidget {
@@ -52,7 +53,9 @@ class ProjectItemWidget extends StatelessWidget {
   Widget _iconLinkWidget(LinkType type, String link) {
     var icon = type == LinkType.android ? Icons.android: type == LinkType.ios ? Icons.apple : Icons.web;
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        AppLogic.openUrl(link,"new_window${type.type}");
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         margin: const EdgeInsets.symmetric(horizontal: 4),

@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/modules/contact/model/contact_model.dart';
 import 'package:portfolio/utils/app_colors.dart';
+import 'package:portfolio/utils/app_logic.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/utils/text_styles.dart';
-import 'package:url_launcher/link.dart' as link;
 import '../../utils/firebase_keys.dart';
+
 
 class ContactWidget extends StatefulWidget {
   const ContactWidget({super.key});
@@ -65,23 +66,22 @@ class ContactWidgetState extends State<ContactWidget> {
               ),
               Row(
                 children: List.generate(
-                    (contactResponse?.socialLinks ?? []).length,
-                    (index) => link.Link(
-                      uri: Uri.parse(contactResponse?.socialLinks?[index].socialLinkUrl??""),
-                      builder: (context, link.FollowLink? openLink) {
-                        return InkWell(
-                            onTap: openLink,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: index == 0 ? 0 : 8.0, right: 8),
-                              child: Image.network(
-                                contactResponse!.socialLinks![index].icon!,
-                                width: 20,
-                                height: 20,
-                              ),
-                            ));
-                      },
-                    )),
+                  (contactResponse?.socialLinks ?? []).length,
+                  (index) => InkWell(
+                    onTap: (){
+                      AppLogic.openUrl(contactResponse?.socialLinks?[index].socialLinkUrl??"","new_window$index");
+                    },
+                    child: Padding(
+                      padding:
+                          EdgeInsets.only(left: index == 0 ? 0 : 8.0, right: 8),
+                      child: Image.network(
+                        contactResponse!.socialLinks![index].icon!,
+                        width: 20,
+                        height: 20,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
