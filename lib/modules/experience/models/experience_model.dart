@@ -1,9 +1,11 @@
 class ExperienceResponse {
   List<ExperienceItem>? experiences;
+  String? color;
 
-  ExperienceResponse({this.experiences});
+  ExperienceResponse({this.experiences,this.color});
 
   ExperienceResponse.fromJson(Map<String, dynamic> json) {
+    color = json['color'];
     if (json['experiences'] != null) {
       experiences = [];
       json['experiences'].forEach((v) {
@@ -14,6 +16,7 @@ class ExperienceResponse {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['color'] = color;
     if (experiences != null) {
       data['experiences'] = experiences!.map((v) => v.toJson()).toList();
     }

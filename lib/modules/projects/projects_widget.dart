@@ -24,7 +24,7 @@ class ProjectsWidgetState extends State<ProjectsWidget>{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ModuleTitleWidget(title: AppStrings.projects, color: "FFFFAB40"),
+        ModuleTitleWidget(title: AppStrings.projects, color: projectsResponse?.color??"FFFFAB40"),
         const SizedBox(
           height: 50,
         ),

@@ -3,6 +3,7 @@ class CollectionNames {
   static const String techStackCollection = "TechStack";
   static const String projectsCollection = "Projects";
   static const String experience = "Experience";
+  static const String queries = "Queries";
 }
 
 class DocumentNames {
@@ -28,4 +29,9 @@ class KeyNames{
   static const String gender = "gender";
   static const String icon = "icon";
 
+}
+
+
+class FirebaseStorageKeys {
+  static const String cv = "CV";
 }

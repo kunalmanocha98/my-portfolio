@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/components/module_title_widget.dart';
 import 'package:portfolio/modules/experience/experience_item_widget.dart';
 import 'package:portfolio/modules/experience/models/experience_model.dart';
+import 'package:portfolio/utils/strings.dart';
 
 import '../../utils/firebase_keys.dart';
 
@@ -25,7 +26,7 @@ class ExperienceWidgetState extends State<ExperienceWidget>{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ModuleTitleWidget(title: "Experience", color: "FF448AFF"),
+        ModuleTitleWidget(title: AppStrings.experience, color: experienceResponse!=null?experienceResponse!.color!:"FF448AFF"),
         const SizedBox(
           height: 50,
         ),
