@@ -126,7 +126,7 @@ class GetInTouchViewState extends State<GetInTouchView> with FormMixins{
   void submitFunc(){
     if(formStateKey.currentState!.validate()){
       formStateKey.currentState!.save();
-      var docName = "${name!.replaceAll(" ", "")}_${DateTime.now().microsecondsSinceEpoch}";
+      var docName = "${name!.replaceAll(" ", "").toLowerCase()}_${DateTime.now().microsecondsSinceEpoch}";
       var query = QueryModel(
         name: name,
         email: email,
