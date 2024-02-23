@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/main.dart';
-import 'package:portfolio/modules/teckStack/model/tech_stack_model.dart';
+import 'package:portfolio/modules/techStack/model/tech_stack_model.dart';
 import '../../../utils/firebase_keys.dart';
 import '../state/tech_state.dart';
 

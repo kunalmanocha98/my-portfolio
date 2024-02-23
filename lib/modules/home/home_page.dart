@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/responsive_widget.dart';
+import 'package:portfolio/modules/experience/ui/exp_widget_view.dart';
 import 'package:portfolio/utils/dimens.dart';
+import '../contact/ui/contact_page_view.dart';
 import '../personal/ui/personal_widget_view.dart';
-import '../teckStack/ui/tech_stack_widget.dart';
-import '../contact/contact_page.dart';
-import '../experience/experience_widget.dart';
-import '../projects/projects_widget.dart';
+import '../projects/ui/project_widget_view.dart';
+import '../techStack/ui/tech_stack_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,15 +32,15 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height:  dimens.gapBig,
                   ),
-                  ProjectsWidget(isMobile: isMobile,),
+                  const ProjectWidgetView(),
                   SizedBox(
                     height: dimens.gapBig,
                   ),
-                  ExperienceWidget(isMobile: isMobile,),
+                  const ExpWidgetView(),
                   SizedBox(
                     height:  dimens.gapBig,
                   ),
-                  ContactWidget(isMobile: isMobile,)
+                  const ContactWidgetView()
                 ],
               );
             }

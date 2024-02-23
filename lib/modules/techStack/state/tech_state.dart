@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:portfolio/modules/teckStack/model/tech_stack_model.dart';
+import 'package:portfolio/modules/techStack/model/tech_stack_model.dart';
 
 abstract class TechState extends Equatable{}
 

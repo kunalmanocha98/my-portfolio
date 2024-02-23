@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/text_styles.dart';
-import 'models/experience_model.dart';
+import '../models/experience_model.dart';
 
 class ExperienceItemWidget extends StatelessWidget{
   final ExperienceItem experience;
