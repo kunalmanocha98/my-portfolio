@@ -1,4 +1,5 @@
 class AppStrings{
+  static const String appName = "Kunal Manocha";
   static const String subtitle1 = "I do code and\n";
   static const String subtitle2 = "make beautiful ";
   static const String subtitle3 = "Apps!";
