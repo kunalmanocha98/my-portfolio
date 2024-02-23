@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/responsive_widget.dart';
-import 'package:portfolio/modules/personal/personal_widget.dart';
 import 'package:portfolio/utils/dimens.dart';
-import '../teckStack/tech_stack_widget.dart';
+import '../personal/ui/personal_widget_view.dart';
+import '../teckStack/ui/tech_stack_widget.dart';
 import '../contact/contact_page.dart';
 import '../experience/experience_widget.dart';
 import '../projects/projects_widget.dart';
@@ -24,11 +24,11 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  PersonalWidget(isMobile:isMobile),
+                  const PersonalWidgetView(),
                   SizedBox(
                     height: dimens.gapLarge,
                   ),
-                  TechStackWidget(isMobile:isMobile),
+                  const TechStackWidgetView(),
                   SizedBox(
                     height:  dimens.gapBig,
                   ),
