@@ -9,7 +9,8 @@ import '../../utils/firebase_keys.dart';
 
 
 class ContactWidget extends StatefulWidget {
-  const ContactWidget({super.key});
+  final bool isMobile;
+  const ContactWidget({super.key,required this.isMobile});
 
   @override
   ContactWidgetState createState() => ContactWidgetState();
@@ -31,23 +32,23 @@ class ContactWidgetState extends State<ContactWidget> {
       decoration: BoxDecoration(color: AppColors.contactContainerColorDark),
       child: Center(
         child: SizedBox(
-          width: 600,
+          width: widget.isMobile?null:600,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 AppStrings.contact,
-                style: TextStyles.expTitleStyle,
+                style: widget.isMobile?TextStylesMobile.expTitleStyle:TextStyles.expTitleStyle,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                padding: EdgeInsets.symmetric(vertical: widget.isMobile?24:32.0),
                 child: Text(
                   contactResponse?.summary ?? "",
-                  style: TextStyles.expDescStyle,
+                  style: widget.isMobile?TextStylesMobile.expDescStyle:TextStyles.expDescStyle,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 0.0, bottom: 20),
+                padding: EdgeInsets.only(top: 0.0, bottom: widget.isMobile?14:20),
                 child: Row(
                   children: [
                     const Icon(
@@ -55,10 +56,10 @@ class ContactWidgetState extends State<ContactWidget> {
                       color: AppColors.appWhiteColor,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
+                      padding: EdgeInsets.only(left:widget.isMobile?8:12.0),
                       child: SelectableText(
                         contactResponse?.email ?? "",
-                        style: TextStyles.expDescStyle,
+                        style: widget.isMobile?TextStylesMobile.expDescStyle:TextStyles.expDescStyle,
                       ),
                     )
                   ],
@@ -72,8 +73,7 @@ class ContactWidgetState extends State<ContactWidget> {
                       AppLogic.openUrl(contactResponse?.socialLinks?[index].socialLinkUrl??"","new_window$index");
                     },
                     child: Padding(
-                      padding:
-                          EdgeInsets.only(left: index == 0 ? 0 : 8.0, right: 8),
+                      padding: EdgeInsets.only(left: index == 0 ? 0 : 8.0, right: 8,top:12),
                       child: Image.network(
                         contactResponse!.socialLinks![index].icon!,
                         width: 20,

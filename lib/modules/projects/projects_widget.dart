@@ -8,7 +8,8 @@ import 'package:portfolio/utils/strings.dart';
 import '../../utils/firebase_keys.dart';
 
 class ProjectsWidget extends StatefulWidget {
-  const ProjectsWidget({super.key});
+  final bool isMobile;
+  const ProjectsWidget({super.key,required this.isMobile});
 
   @override
   ProjectsWidgetState createState() => ProjectsWidgetState();
@@ -24,18 +25,18 @@ class ProjectsWidgetState extends State<ProjectsWidget>{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ModuleTitleWidget(title: AppStrings.projects, color: projectsResponse?.color??"FFFFAB40"),
-        const SizedBox(
-          height: 50,
+        ModuleTitleWidget(title: AppStrings.projects, isMobile: widget.isMobile,color: projectsResponse?.color??"FFFFAB40"),
+        SizedBox(
+          height: widget.isMobile?36:50,
         ),
         SizedBox(
-          height: 300,
+          height: widget.isMobile?250:300,
           child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 100),
+            padding: EdgeInsets.symmetric(horizontal: widget.isMobile?24:100),
             scrollDirection: Axis.horizontal,
             itemCount: projectsResponse?.projects?.length??0,
             itemBuilder: (BuildContext context, int index) {
-              return ProjectItemWidget(project:projectsResponse?.projects?[index]);
+              return ProjectItemWidget(project:projectsResponse?.projects?[index],isMobile:widget.isMobile);
             },
           ),
         )

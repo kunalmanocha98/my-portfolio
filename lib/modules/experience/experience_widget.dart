@@ -8,7 +8,8 @@ import 'package:portfolio/utils/strings.dart';
 import '../../utils/firebase_keys.dart';
 
 class ExperienceWidget extends StatefulWidget {
-  const ExperienceWidget({super.key});
+  final bool isMobile;
+  const ExperienceWidget({super.key,required this.isMobile});
 
   @override
   ExperienceWidgetState createState() => ExperienceWidgetState();
@@ -26,13 +27,13 @@ class ExperienceWidgetState extends State<ExperienceWidget>{
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ModuleTitleWidget(title: AppStrings.experience, color: experienceResponse!=null?experienceResponse!.color!:"FF448AFF"),
-        const SizedBox(
-          height: 50,
+        ModuleTitleWidget(title: AppStrings.experience, isMobile: widget.isMobile,color: experienceResponse!=null?experienceResponse!.color!:"FF448AFF"),
+        SizedBox(
+          height: widget.isMobile?36:50,
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
-          children: List.generate(experienceResponse?.experiences?.length ?? 0, (index) => ExperienceItemWidget(experience: experienceResponse!.experiences![index],)),
+          children: List.generate(experienceResponse?.experiences?.length ?? 0, (index) => ExperienceItemWidget(experience: experienceResponse!.experiences![index],isMobile:widget.isMobile)),
         )
       ],
     );
