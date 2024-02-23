@@ -7,15 +7,16 @@ import 'package:portfolio/utils/text_styles.dart';
 
 class ProjectItemWidget extends StatelessWidget {
   final ProjectItem? project;
+  final bool isMobile;
 
-  const ProjectItemWidget({super.key, required this.project});
+  const ProjectItemWidget({super.key, required this.project,required this.isMobile});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      height: 150,
-      margin: const EdgeInsets.all(20),
+      width: isMobile?250:300,
+      height: isMobile?130:150,
+      margin: EdgeInsets.all(isMobile?14:20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Colors.grey,
@@ -33,7 +34,7 @@ class ProjectItemWidget extends StatelessWidget {
             children: [
               Flexible(
                 child: Text((project?.name??"").toUpperCase(),
-                    style: TextStyles.projectTitleStyle),
+                    style: isMobile?TextStylesMobile.projectTitleStyle:TextStyles.projectTitleStyle),
               ),
               const SizedBox(height: 12,),
               Row(

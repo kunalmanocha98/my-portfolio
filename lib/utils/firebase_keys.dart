@@ -34,4 +34,5 @@ class KeyNames{
 
 class FirebaseStorageKeys {
   static const String cv = "CV";
+  static const String profileIcons = "ProfileIcons";
 }

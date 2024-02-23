@@ -10,7 +10,8 @@ import '../../utils/form_mixins.dart';
 import '../../utils/strings.dart';
 
 class GetInTouchView extends StatefulWidget {
-  const GetInTouchView({super.key});
+  final bool isMobile;
+  const GetInTouchView({super.key,required this.isMobile});
 
   @override
   State<StatefulWidget> createState() => GetInTouchViewState();
@@ -34,86 +35,87 @@ class GetInTouchViewState extends State<GetInTouchView> with FormMixins{
       child: Form(
         key: formStateKey,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width*0.5,
+          width: widget.isMobile?null:MediaQuery.of(context).size.width*0.5,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(widget.isMobile?12:16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
                 Text(AppStrings.getInTouch,style: TextStyles.expTitleStyle.copyWith(
                   fontSize: 24
                 ),),
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
                 TextFormField(
                   validator: validateTextField,
                   onSaved: (value){
                     name=value;
                   },
-                  style: TextStyles.descriptionStyle,
+                  style:  widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   decoration: InputDecoration(
                     hintText: "Enter your name",
                     labelText: "Enter your name",
                     border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.appWhiteColor)),
-                    hintStyle: TextStyles.descriptionStyle,
-                    labelStyle: TextStyles.descriptionStyle,
+                    hintStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
+                    labelStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   ),
                 ),
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
                 TextFormField(
                   validator: validateEmailTextField,
                   onSaved: (value){
                     email=value;
                   },
-                  style: TextStyles.descriptionStyle,
+                  style:  widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.appWhiteColor)),
-                    hintStyle: TextStyles.descriptionStyle,
-                    labelStyle: TextStyles.descriptionStyle,
+                    hintStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
+                    labelStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                     hintText: "Enter your email",
                     labelText: "Enter your email",
                   ),
                 ),
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
                 TextFormField(
                   onSaved: (value){
                     mobile=value;
                   },
-                  style: TextStyles.descriptionStyle,
+                  style:  widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   validator: validateMobileTextField,
                   decoration: InputDecoration(
                       hintText: "Enter your mobile number",
                     labelText: "Enter your mobile number",
                     border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.appWhiteColor)),
-                    hintStyle: TextStyles.descriptionStyle,
-                    labelStyle: TextStyles.descriptionStyle,
+                    hintStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
+                    labelStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   ),
                 ),
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
                 TextFormField(
-                  minLines: 10,
-                  maxLines: 20,
+                  minLines: 8,
+                  maxLines: 14,
                   textAlignVertical: TextAlignVertical.top,
                   validator: validateTextField,
                   onSaved: (value){
                     purpose=value;
                   },
-                  style: TextStyles.descriptionStyle,
+                  style:  widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   decoration: InputDecoration(
                     hintText: "Enter your purpose of contacting",
                     labelText: "Enter your purpose of contacting",
                     alignLabelWithHint: true,
                     border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.appWhiteColor)),
-                    hintStyle: TextStyles.descriptionStyle,
-                    labelStyle: TextStyles.descriptionStyle,
+                    hintStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
+                    labelStyle: widget.isMobile?TextStylesMobile.descriptionStyle:TextStyles.descriptionStyle,
                   ),
                 ),
-                const SizedBox(height: 20,),
+                SizedBox(height:widget.isMobile?14: 20,),
                 AppButtons(
                   buttonText: AppStrings.submit,
+                  isMobile: widget.isMobile,
                   onPressed: submitFunc,
                 ).getFilledButton(),
-                const SizedBox(height: 20,),
+                SizedBox(height: widget.isMobile?14:20,),
               ],
             ),
           ),
