@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/modules/getInTouch/getInTouchView.dart';
 import 'package:portfolio/modules/personal/model/personal_detail_model.dart';
