@@ -1,6 +1,20 @@
 {
   "hosting": {
+    "headers": [
+      {
+        "source": "*",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": ""
+          }
+        ]
+      }
+    ],
     "public": "build/web",
+    "rewrites":  [
+      {"source": "/(.*)", "destination": "/"}
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",

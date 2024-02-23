@@ -1,9 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/app_routes.dart';
+import 'package:portfolio/utils/strings.dart';
 import 'modules/home/home_page.dart';
-import 'modules/test/test_page.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -13,18 +18,19 @@ class MyApp extends StatefulWidget {
   @override
   MyAppState createState() => MyAppState();
 }
-class MyAppState extends State<MyApp>{
+
+class MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kunal Manocha',
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       // onGenerateRoute: _routes(),
       initialRoute: Routes.initialRoute,
       routes: {
-        Routes.initialRoute: (context)=> HomePage(),
-        Routes.testRoute: (context)=> TestPage(),
+        Routes.initialRoute: (context) => const HomePage(),
+        // Routes.homeRoute: (context) => const HomePage(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black87),
@@ -32,23 +38,4 @@ class MyAppState extends State<MyApp>{
       ),
     );
   }
-
-  RouteFactory _routes() {
-    return (settings) {
-      switch(settings.name){
-        case Routes.initialRoute:{
-          return MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage(),
-          );
-        }
-        case Routes.testRoute:{
-          return MaterialPageRoute(
-            builder: (BuildContext context) => const TestPage(),
-          );
-        }
-      }
-      return null;
-    };
-  }
-
 }

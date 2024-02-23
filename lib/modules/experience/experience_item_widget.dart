@@ -1,31 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/text_styles.dart';
+import 'models/experience_model.dart';
 
 class ExperienceItemWidget extends StatelessWidget{
-  const ExperienceItemWidget({super.key});
+  final ExperienceItem experience;
+  final bool isMobile;
+  const ExperienceItemWidget({super.key,required this.experience,required this.isMobile});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 600,
-      margin: EdgeInsets.symmetric(vertical: 16),
+      width: isMobile?null:600,
+      margin: EdgeInsets.symmetric(vertical: 16,horizontal:isMobile?20:0),
       child: Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: Text("Senior Software Engineer at Sidan Global Solutions",
-                style: TextStyles.expTitleStyle,),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${experience.designation}",style: isMobile?TextStylesMobile.expTitleStyle:TextStyles.expTitleStyle),
+                    Text("${experience.name}, ${experience.location}",
+                    style: (isMobile?TextStylesMobile.expTitleStyle:TextStyles.expTitleStyle).copyWith(
+                      fontSize: isMobile?10:14,
+                      color: Colors.white70
+                    ),),
+                  ],
+                ),
               ),
-              SizedBox(width: 100,),
-              Text("August 2023 - present",
-              style: TextStyles.expDateStyle,)
+              const SizedBox(width: 100,),
+              Text("${experience.fromDate} - ${experience.toDate}",
+              style: isMobile?TextStylesMobile.expDateStyle:TextStyles.expDateStyle,)
             ],
           ),
-          SizedBox(height: 12,),
-          Text("At Meta, I served as a  Software Engineer, focusing on the design and implementation of backend systems for the social media giant's dynamic platform. Working on projects that involved large-scale data processing and user engagement features, I leveraged my expertise to ensure seamless functionality and scalability.",
-            style: TextStyles.expDescStyle,)
+          const SizedBox(height: 12,),
+          Text("${experience.summary}",
+            style: isMobile?TextStylesMobile.expDescStyle:TextStyles.expDescStyle,)
         ],
       ),
     );

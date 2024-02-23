@@ -1,86 +1,52 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/utils/app_routes.dart';
+import 'package:portfolio/components/responsive_widget.dart';
+import 'package:portfolio/modules/personal/personal_widget.dart';
+import 'package:portfolio/utils/dimens.dart';
+import '../teckStack/tech_stack_widget.dart';
+import '../contact/contact_page.dart';
+import '../experience/experience_widget.dart';
+import '../projects/projects_widget.dart';
 
-import '../test/test_page.dart';
-
-class HomePage extends StatelessWidget{
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var titleStyle = GoogleFonts.robotoMono(
-      fontSize: screenWidth>1300?44:30,
-      color: Colors.white,
-    );
-    var descriptionStyle = GoogleFonts.robotoMono(
-      fontSize: screenWidth>1300?20:14,
-      color: Colors.white,
-    );
-    var comingSoonText =
-    GoogleFonts.robotoMono(fontSize: screenWidth>1300?30:20, color: Colors.white);
-
-    return Scaffold(
-        backgroundColor: Colors.black87,
-        body: Container(
-          margin: const EdgeInsets.only(top: 36, left: 36),
+    return  Scaffold(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: SizedBox(
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              RichText(
-                text: TextSpan(style: titleStyle,
-                    children: const [
-                      // TextSpan(text: "<h1>",style: titleStyle.copyWith(
-                      //     color: Color(0XFFff0000))),
-                      TextSpan(text: "Kunal Manocha"),
-                      // TextSpan(text: "</h1>",style: titleStyle.copyWith(
-                      //     color: Color(0XFFff0000))),
-                    ]
-                ),
-              ),
-              RichText(
-                text: TextSpan(style: descriptionStyle, children: [
-                  // TextSpan(text: "<p>",style: descriptionStyle.copyWith(
-                  //     color: Color(0XFF0078ff))),
-                  WidgetSpan(child:GestureDetector( onTap:(){
-                    Navigator.pushNamed(context,Routes.testRoute);
-                  },child: Text("Hi,I am a ",style: descriptionStyle,))),
-                  TextSpan(
-                    text: "frontend developer \n",
-                    style: descriptionStyle.copyWith(
-                        color: const Color(0XFF01ff1f)),
+          child: ResponsiveWidget(
+            child: (context,isMobile) {
+              var dimens = Dimensions(isMobile);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PersonalWidget(isMobile:isMobile),
+                  SizedBox(
+                    height: dimens.gapLarge,
                   ),
-                  const TextSpan(text: "Specialises in "),
-                  TextSpan(
-                    text: "Mobile App Development \n",
-                    style: descriptionStyle.copyWith(
-                        color: const Color(0XFF0078ff)),
+                  TechStackWidget(isMobile:isMobile),
+                  SizedBox(
+                    height:  dimens.gapBig,
                   ),
-                  const TextSpan(text: "Portfolio is under construction"),
-                  // TextSpan(text: "</p>",style: descriptionStyle.copyWith(
-                  //     color: Color(0XFF0078ff))),
-                ]),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Center(
-                child: AnimatedTextKit(
-                  isRepeatingAnimation: true,
-                  animatedTexts: [
-                    TypewriterAnimatedText('Coming Soon...',
-                        speed: const Duration(milliseconds: 200),
-                        textStyle: comingSoonText),
-                  ],
-                  onTap: () {},
-                ),
-              ),
-            ],
+                  ProjectsWidget(isMobile: isMobile,),
+                  SizedBox(
+                    height: dimens.gapBig,
+                  ),
+                  ExperienceWidget(isMobile: isMobile,),
+                  SizedBox(
+                    height:  dimens.gapBig,
+                  ),
+                  ContactWidget(isMobile: isMobile,)
+                ],
+              );
+            }
           ),
-        ));
+        ),
+      ),
+    );
   }
-
 }

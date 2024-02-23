@@ -1,88 +1,85 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/components/app_buttons.dart';
-import 'package:portfolio/components/tech_stack_widget.dart';
-import 'package:portfolio/modules/projects/projects_widget.dart';
-import 'package:portfolio/utils/strings.dart';
-import 'package:portfolio/utils/text_styles.dart';
+import '../../utils/app_routes.dart';
 
-import '../experience/experience_widget.dart';
 
 class TestPage extends StatelessWidget{
   const TestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var titleStyle = GoogleFonts.robotoMono(
+      fontSize: screenWidth>1300?44:30,
+      color: Colors.white,
+    );
+    var descriptionStyle = GoogleFonts.robotoMono(
+      fontSize: screenWidth>1300?20:14,
+      color: Colors.white,
+    );
+    var comingSoonText =
+    GoogleFonts.robotoMono(fontSize: screenWidth>1300?30:20, color: Colors.white);
+
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: SizedBox(
+        backgroundColor: Colors.black87,
+        body: Container(
+          margin: const EdgeInsets.only(top: 36, left: 36),
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top:36.0),
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundImage: NetworkImage("https://cdn3d.iconscout.com/3d/premium/thumb/web-developer-4506461-3738664.png"),
-                ),
-              ),
-              const SizedBox(height: 36,),
-              Container(
-                width: double.infinity,
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: TextStyles.headingStyle,
-                    children: [
-                      const TextSpan(
-                        text: "I do code and\n",
-                      ),
-                      const TextSpan(
-                        text: "make beautiful ",
-                      ),
-                      TextSpan(
-                        text: "Apps!",
-                        style: TextStyles.headingStyle.copyWith(
-                          color: Colors.limeAccent
-                        )
-                      )
+              RichText(
+                text: TextSpan(style: titleStyle,
+                    children: const [
+                      // TextSpan(text: "<h1>",style: titleStyle.copyWith(
+                      //     color: Color(0XFFff0000))),
+                      TextSpan(text: "Kunal Manocha"),
+                      // TextSpan(text: "</h1>",style: titleStyle.copyWith(
+                      //     color: Color(0XFFff0000))),
                     ]
+                ),
+              ),
+              RichText(
+                text: TextSpan(style: descriptionStyle, children: [
+                  // TextSpan(text: "<p>",style: descriptionStyle.copyWith(
+                  //     color: Color(0XFF0078ff))),
+                  WidgetSpan(child:GestureDetector( onTap:(){
+                    Navigator.pushNamed(context,Routes.homeRoute);
+                  },child: Text("Hi,I am a ",style: descriptionStyle,))),
+                  TextSpan(
+                    text: "frontend developer \n",
+                    style: descriptionStyle.copyWith(
+                        color: const Color(0XFF01ff1f)),
                   ),
+                  const TextSpan(text: "Specialises in "),
+                  TextSpan(
+                    text: "Mobile App Development \n",
+                    style: descriptionStyle.copyWith(
+                        color: const Color(0XFF0078ff)),
+                  ),
+                  const TextSpan(text: "Portfolio is under construction"),
+                  // TextSpan(text: "</p>",style: descriptionStyle.copyWith(
+                  //     color: Color(0XFF0078ff))),
+                ]),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Center(
+                child: AnimatedTextKit(
+                  isRepeatingAnimation: true,
+                  animatedTexts: [
+                    TypewriterAnimatedText('Coming Soon...',
+                        speed: const Duration(milliseconds: 200),
+                        textStyle: comingSoonText),
+                  ],
+                  onTap: () {},
                 ),
               ),
-              Container(
-                width: 500,
-                margin: const EdgeInsets.only(top: 16,bottom: 16),
-                child: Text(
-                  AppStrings.descriptionString,
-                  textAlign: TextAlign.center,
-                  style: TextStyles.descriptionStyle,
-
-                ),
-              ),
-              const SizedBox(height: 24,),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  AppButtons(buttonText: "Get in touch", onPressed: (){}).getFilledButton(),
-                  const SizedBox(width: 20,),
-                  AppButtons(buttonText: "Download CV", onPressed: (){}).getOutlinedButton()
-                ],
-              ),
-              const SizedBox(height: 100,),
-              TechStackWidget(),
-              const SizedBox(height: 100,),
-              ProjectsWidget(),
-              const SizedBox(height: 50,),
-              ExperienceWidget()
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 
 }

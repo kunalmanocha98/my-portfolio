@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1029070544602",
+    "project_id": "portfolio-kunalmanocha",
+    "storage_bucket": "portfolio-kunalmanocha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029070544602:android:0e50a3578e4d42af3b8fe3",
+        "android_client_info": {
+          "package_name": "com.kunalmanocha.portfolio.portfolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH_Nyq5d0a3cIW0W-DRqXq3TNhdoX0TLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
