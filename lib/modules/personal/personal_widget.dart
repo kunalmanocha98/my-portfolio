@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class PersonalWidget extends StatefulWidget {
 
 class PersonalWidgetState extends State<PersonalWidget> {
   PersonalDetailsResponse? personal;
-  String image = "https://cdn3d.iconscout.com/3d/premium/thumb/web-developer-4506461-3738664.png";
+  // String image = "https://cdn3d.iconscout.com/3d/premium/thumb/web-developer-4506461-3738664.png";
 
   @override
   void initState() {
@@ -42,12 +44,11 @@ class PersonalWidgetState extends State<PersonalWidget> {
           ),
           Padding(
             padding:  EdgeInsets.only(top: widget.isMobile?28:36.0),
-            child: CircleAvatar(
+            child:
+            CircleAvatar(
               radius: widget.isMobile?54:100,
-              backgroundImage: NetworkImage(
-                image
-                  ),
-            ),
+              backgroundImage: const AssetImage("assets/images/profile_image1.jpg"),
+            )
           ),
            SizedBox(
             height: widget.isMobile?24:36,
@@ -127,12 +128,6 @@ class PersonalWidgetState extends State<PersonalWidget> {
             .get())
         .data();
     personal = PersonalDetailsResponse.fromJson(data!);
-    if(personal?.icon!=null) {
-      image = await FirebaseStorage.instance
-          .ref(FirebaseStorageKeys.profileIcons)
-          .child(personal!.icon!)
-          .getDownloadURL();
-    }
     setState(() {});
   }
 }
