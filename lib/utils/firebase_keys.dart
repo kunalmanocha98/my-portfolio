@@ -4,6 +4,7 @@ class CollectionNames {
   static const String projectsCollection = "Projects";
   static const String experience = "Experience";
   static const String queries = "Queries";
+  static const String education= "Education";
 }
 
 class DocumentNames {
@@ -16,6 +17,8 @@ class DocumentNames {
   static const String companyProjects = "companyProjects";
   //Experience
   static const String relevantExperience = "relevantExperience";
+  //Education
+  static const String educationalDetails = "educationalDetails";
   
 }
 

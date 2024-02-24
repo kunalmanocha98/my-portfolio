@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/modules/contact/bloc/contact_bloc.dart';
 import 'package:portfolio/modules/contact/model/contact_model.dart';
 import 'package:portfolio/modules/contact/state/contact_state.dart';
+import 'package:portfolio/modules/education/bloc/education_bloc.dart';
+import 'package:portfolio/modules/education/model/education_model.dart';
+import 'package:portfolio/modules/education/state/education_state.dart';
 import 'package:portfolio/modules/experience/bloc/exp_bloc.dart';
 import 'package:portfolio/modules/experience/models/experience_model.dart';
 import 'package:portfolio/modules/experience/state/exp_state.dart';
@@ -67,6 +70,11 @@ class MyAppState extends State<MyApp> {
         BlocProvider(
           create: (BuildContext context) {
             return ContactBloc(InitialContactState(ContactResponse()));
+          },
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return EducationBloc(InitialEducationState(EducationalResponse()));
           },
         ),
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/responsive_widget.dart';
+import 'package:portfolio/modules/education/ui/education_view.dart';
 import 'package:portfolio/modules/experience/ui/exp_widget_view.dart';
 import 'package:portfolio/utils/dimens.dart';
 import '../contact/ui/contact_page_view.dart';
@@ -37,6 +38,10 @@ class HomePage extends StatelessWidget {
                     height: dimens.gapBig,
                   ),
                   const ExpWidgetView(),
+                  SizedBox(
+                    height: dimens.gapBig,
+                  ),
+                  const EducationView(),
                   SizedBox(
                     height:  dimens.gapBig,
                   ),
