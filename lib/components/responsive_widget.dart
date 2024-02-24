@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-typedef ResponsiveWidgetChild = Widget Function(BuildContext,bool);
+typedef ResponsiveWidgetChild = Widget Function(BuildContext context ,bool isMobile);
 
 class ResponsiveWidget extends StatefulWidget {
   final ResponsiveWidgetChild child;
