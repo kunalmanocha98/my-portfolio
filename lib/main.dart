@@ -112,7 +112,7 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.initialRoute,
       routes: {
-        Routes.initialRoute: (context) => HomePage(),
+        Routes.initialRoute: (context) => const HomePage(),
       },
     );
   }

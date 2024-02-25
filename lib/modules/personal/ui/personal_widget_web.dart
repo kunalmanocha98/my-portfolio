@@ -7,7 +7,7 @@ import '../../../components/app_buttons.dart';
 import '../../../utils/app_logic.dart';
 import '../../../utils/strings.dart';
 import '../../../utils/text_styles.dart';
-import '../../getInTouch/getInTouchView.dart';
+import '../../get_in_touch/get_in_touch_view.dart';
 import '../model/personal_detail_model.dart';
 
 class PersonalWidgetWeb extends StatelessWidget {

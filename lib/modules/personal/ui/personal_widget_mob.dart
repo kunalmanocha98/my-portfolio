@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/modules/getInTouch/getInTouchView.dart';
+import 'package:portfolio/modules/get_in_touch/get_in_touch_view.dart';
 import 'package:portfolio/modules/personal/bloc/personal_bloc.dart';
 import 'package:portfolio/modules/personal/model/personal_detail_model.dart';
 import 'package:portfolio/modules/personal/state/personal_state.dart';

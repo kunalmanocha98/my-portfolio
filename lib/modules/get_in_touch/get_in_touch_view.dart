@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/modules/getInTouch/model/query_model.dart';
+import 'package:portfolio/modules/get_in_touch/model/query_model.dart';
 import 'package:portfolio/utils/app_colors.dart';
 import 'package:portfolio/utils/firebase_keys.dart';
 import 'package:portfolio/utils/text_styles.dart';
