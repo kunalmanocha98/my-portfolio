@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/modules/teckStack/model/tech_stack_model.dart';
+import 'package:portfolio/modules/techStack/model/tech_stack_model.dart';
 class TechStackItemWidget extends StatelessWidget{
   final TechStackItem item;
   final bool isMobile;

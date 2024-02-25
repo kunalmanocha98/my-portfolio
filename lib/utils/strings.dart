@@ -10,6 +10,7 @@ class AppStrings{
   static const String projects = "Projects";
   static const String contact = "Contact";
   static const String experience = "Experience";
+  static const String educationDetails = "Education";
   static const String submittedSuccessfully = "Your details have been submitted successfully";
 
 }
