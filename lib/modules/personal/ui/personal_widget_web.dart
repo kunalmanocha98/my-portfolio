@@ -37,7 +37,7 @@ class PersonalWidgetWeb extends StatelessWidget {
           padding: const EdgeInsets.only(top: 32.0),
           child: Text(
             personalData.name ?? "-",
-            style: TextStyles.nameStyle,
+            style: CustomStyles(context).nameStyle,
           ),
         ),
         const Padding(
@@ -53,7 +53,7 @@ class PersonalWidgetWeb extends StatelessWidget {
           width: double.infinity,
           child: RichText(
             textAlign: TextAlign.center,
-            text: TextSpan(style: TextStyles.headingStyle, children: [
+            text: TextSpan(style: CustomStyles(context).headingStyle, children: [
               const TextSpan(
                 text: AppStrings.subtitle1,
               ),
@@ -62,8 +62,8 @@ class PersonalWidgetWeb extends StatelessWidget {
               ),
               TextSpan(
                   text: AppStrings.subtitle3,
-                  style: (TextStyles.headingStyle)
-                      .copyWith(color: Colors.limeAccent))
+                  style: CustomStyles(context).headingStyle!
+                      .copyWith(color: Colors.lime))
             ]),
           ),
         ),

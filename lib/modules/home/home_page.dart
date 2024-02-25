@@ -26,14 +26,14 @@ class HomePage extends StatelessWidget {
               if (state is LightThemeState) {
                 return IconButton(
                   onPressed: () {
-                    themeBloc.changeState(false);
+                    themeBloc.changeState(context,false);
                   },
                   icon: const Icon(Icons.dark_mode),
                 );
               } else {
                 return IconButton(
                   onPressed: () {
-                    themeBloc.changeState(true);
+                    themeBloc.changeState(context,true);
                   },
                   icon: const Icon(Icons.light_mode),
                 );
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                PersonalWidgetView(),
+                const PersonalWidgetView(),
                 SizedBox(
                   height: dimens.gapLarge,
                 ),

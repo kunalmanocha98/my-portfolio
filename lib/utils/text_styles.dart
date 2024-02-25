@@ -139,4 +139,5 @@ class CustomStyles{
   CustomStyles(this.context);
 
   TextStyle? get nameStyle => Theme.of(context).textTheme.displayLarge;
+  TextStyle? get headingStyle => Theme.of(context).textTheme.displayMedium;
 }

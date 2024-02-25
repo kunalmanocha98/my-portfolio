@@ -8,13 +8,18 @@ abstract class ThemeState extends Equatable{}
 class LightThemeState extends ThemeState{
   final themeData = ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(color: Colors.transparent),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.nothingYouCouldDo(
           fontSize: 54,
           fontWeight: FontWeight.bold,
           color: AppColors.appBlackColor
       ),
-      // displayMedium: ,
+      displayMedium: GoogleFonts.poppins(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          color: AppColors.appPrimaryTextColorLight
+      ),
       // displaySmall: ,
       // headlineLarge: ,
       // headlineMedium: ,
@@ -38,13 +43,18 @@ class LightThemeState extends ThemeState{
 class DarkThemeState extends ThemeState{
   final themeData = ThemeData.dark(useMaterial3: true,).copyWith(
     scaffoldBackgroundColor: Colors.black,
+      appBarTheme: const AppBarTheme(color: Colors.transparent),
       textTheme: TextTheme(
         displayLarge: GoogleFonts.nothingYouCouldDo(
             fontSize: 54,
             fontWeight: FontWeight.bold,
             color: AppColors.appWhiteColor
         ),
-        // displayMedium: ,
+        displayMedium: GoogleFonts.poppins(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: AppColors.appPrimaryTextColorDark
+        ),
         // displaySmall: ,
         // headlineLarge: ,
         // headlineMedium: ,
