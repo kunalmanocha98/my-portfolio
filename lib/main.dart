@@ -11,6 +11,8 @@ import 'package:portfolio/modules/education/state/education_state.dart';
 import 'package:portfolio/modules/experience/bloc/exp_bloc.dart';
 import 'package:portfolio/modules/experience/models/experience_model.dart';
 import 'package:portfolio/modules/experience/state/exp_state.dart';
+import 'package:portfolio/modules/home/bloc/home_bloc.dart';
+import 'package:portfolio/modules/home/state/home_state.dart';
 import 'package:portfolio/modules/personal/bloc/personal_bloc.dart';
 import 'package:portfolio/modules/personal/model/personal_detail_model.dart';
 import 'package:portfolio/modules/personal/state/personal_state.dart';
@@ -75,6 +77,11 @@ class MyAppState extends State<MyApp> {
         BlocProvider(
           create: (BuildContext context) {
             return EducationBloc(InitialEducationState(EducationalResponse()));
+          },
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return HomeBloc(InitialHomeState());
           },
         ),
       ],
