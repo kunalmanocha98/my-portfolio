@@ -21,65 +21,64 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-        return Stack(
-          children: [
-            SingleChildScrollView(
-              child: SizedBox(
-                width: double.infinity,
-                child: ResponsiveWidget(child: (context, isMobile) {
-                  var dimens = Dimensions(isMobile);
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const PersonalWidgetView(),
-                      SizedBox(
-                        height: dimens.gapLarge,
-                      ),
-                      const TechStackWidgetView(),
-                      SizedBox(
-                        height: dimens.gapBig,
-                      ),
-                      const ProjectWidgetView(),
-                      SizedBox(
-                        height: dimens.gapBig,
-                      ),
-                      const ExpWidgetView(),
-                      SizedBox(
-                        height: dimens.gapBig,
-                      ),
-                      const EducationView(),
-                      SizedBox(
-                        height: dimens.gapBig,
-                      ),
-                      const ContactWidgetView()
-                    ],
-                  );
-                }),
+        return ResponsiveWidget(child: (context, isMobile) {
+          var dimens = Dimensions(isMobile);
+          return Stack(
+            children: [
+              SingleChildScrollView(
+                child: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const PersonalWidgetView(),
+                        SizedBox(
+                          height: dimens.gapLarge,
+                        ),
+                        const TechStackWidgetView(),
+                        SizedBox(
+                          height: dimens.gapBig,
+                        ),
+                        const ProjectWidgetView(),
+                        SizedBox(
+                          height: dimens.gapBig,
+                        ),
+                        const ExpWidgetView(),
+                        SizedBox(
+                          height: dimens.gapBig,
+                        ),
+                        const EducationView(),
+                        SizedBox(
+                          height: dimens.gapBig,
+                        ),
+                        const ContactWidgetView()
+                      ],
+                    )),
               ),
-            ),
-            Visibility(
-              visible: state is LoadingHomeState,
-              child: Container(
-                color: Colors.black,
-                child: Center(
-                  child: SizedBox(
-                    child: TextLiquidFill(
-                      text: AppStrings.appName,
-                      loadDuration: const Duration(seconds: 2),
-                      waveColor: Colors.blueAccent,
-                      boxBackgroundColor: Colors.black,
-                      textStyle: const TextStyle(
-                        fontSize: 80.0,
-                        fontWeight: FontWeight.bold,
+              Visibility(
+                visible: state is LoadingHomeState,
+                child: Container(
+                  color: Colors.black,
+                  child: Center(
+                    child: SizedBox(
+                      child: TextLiquidFill(
+                        text: AppStrings.appName,
+                        loadDuration: const Duration(seconds: 2),
+                        waveColor: Colors.blueAccent,
+                        boxBackgroundColor: Colors.black,
+                        textStyle: TextStyle(
+                          fontSize: isMobile ? 36 : 54.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
-        );
+              )
+            ],
+          );
+        });
       }),
     );
   }
