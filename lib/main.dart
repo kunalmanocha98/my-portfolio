@@ -20,14 +20,20 @@ import 'package:portfolio/modules/projects/state/project_state.dart';
 import 'package:portfolio/modules/techStack/bloc/tech_bloc.dart';
 import 'package:portfolio/modules/techStack/model/tech_stack_model.dart';
 import 'package:portfolio/modules/techStack/state/tech_state.dart';
+import 'package:portfolio/theme/theme_bloc.dart';
+import 'package:portfolio/theme/theme_state.dart';
 import 'package:portfolio/utils/app_routes.dart';
 import 'package:portfolio/utils/strings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'modules/home/home_page.dart';
 import 'firebase_options.dart';
 
 FirebaseFirestore fireStoreInstance = FirebaseFirestore.instance;
+late SharedPreferences gPrefs;
 
 void main() async {
+  gPrefs = await SharedPreferences.getInstance();
+  gPrefs.setBool(PrefKeys.isDarkTheme, true);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -77,21 +83,37 @@ class MyAppState extends State<MyApp> {
             return EducationBloc(InitialEducationState(EducationalResponse()));
           },
         ),
-      ],
-      child: MaterialApp(
-        title: AppStrings.appName,
-        debugShowCheckedModeBanner: false,
-        // onGenerateRoute: _routes(),
-        initialRoute: Routes.initialRoute,
-        routes: {
-          Routes.initialRoute: (context) => const HomePage(),
-          // Routes.homeRoute: (context) => const HomePage(),
-        },
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black87),
-          useMaterial3: true,
+        BlocProvider(
+          create: (BuildContext context) {
+            return ThemeBloc((gPrefs.getBool(PrefKeys.isDarkTheme)??true)?DarkThemeState():LightThemeState());
+          },
         ),
+      ],
+      child: BlocBuilder<ThemeBloc,ThemeState>(
+        builder: (context,state) {
+          if(state is DarkThemeState){
+            return _getMaterialApp(state.themeMode, state.themeData);
+          }else if(state is LightThemeState){
+            return _getMaterialApp(state.themeMode, state.themeData);
+          }else{
+            return const CircularProgressIndicator();
+          }
+        }
       ),
+    );
+  }
+
+
+  Widget _getMaterialApp(ThemeMode mode, ThemeData themeData){
+    return MaterialApp(
+      title: AppStrings.appName,
+      themeMode: mode,
+      theme: themeData,
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.initialRoute,
+      routes: {
+        Routes.initialRoute: (context) => HomePage(),
+      },
     );
   }
 }

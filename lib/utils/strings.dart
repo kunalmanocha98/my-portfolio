@@ -12,5 +12,8 @@ class AppStrings{
   static const String experience = "Experience";
   static const String educationDetails = "Education";
   static const String submittedSuccessfully = "Your details have been submitted successfully";
+}
 
+class PrefKeys{
+  static const String isDarkTheme = "isDarkTheme";
 }

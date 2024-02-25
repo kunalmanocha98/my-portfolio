@@ -131,3 +131,12 @@ class TextStylesMobile {
     color: AppColors.appTernaryTextColorDark,
   );
 }
+
+
+
+class CustomStyles{
+  final BuildContext context;
+  CustomStyles(this.context);
+
+  TextStyle? get nameStyle => Theme.of(context).textTheme.displayLarge;
+}

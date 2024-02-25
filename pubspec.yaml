@@ -43,6 +43,7 @@ dependencies:
   url_launcher: ^6.2.4
   flutter_bloc:
   equatable:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

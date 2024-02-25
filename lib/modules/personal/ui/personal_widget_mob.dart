@@ -34,7 +34,7 @@ class PersonalWidgetMob extends StatelessWidget {
           padding: const EdgeInsets.only(top: 24),
           child: Text(
             personalData.name ?? "-",
-            style: TextStylesMobile.nameStyle,
+            style: CustomStyles(context).nameStyle,
           ),
         ),
         const Padding(
