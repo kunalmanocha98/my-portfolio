@@ -44,7 +44,7 @@ class PersonalWidgetWeb extends StatelessWidget {
             padding: EdgeInsets.only(top: 36.0),
             child: CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage("assets/images/profile_image1.jpg"),
+              backgroundImage: AssetImage("assets/images/profile_image_2.jpg"),
             )),
         const SizedBox(
           height: 36,
