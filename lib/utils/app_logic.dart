@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class AppLogic {
   static openUrl(String url, String name) async {
     if (kIsWeb) {
-      window.open(url, name);
+      await launchUrl(Uri.parse(url),webOnlyWindowName: name);
     } else {
       if (await canLaunchUrl(Uri.parse(url))) {
         await launchUrl(Uri.parse(url));

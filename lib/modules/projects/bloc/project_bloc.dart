@@ -12,6 +12,8 @@ class ProjectBloc extends Cubit<ProjectState>{
 
   void fetchData() async{
     var data = (await fireStoreInstance.collection(CollectionNames.projectsCollection).doc(DocumentNames.companyProjects).get()).data();
-    emit(LoadedProjectState(ProjectsResponse.fromJson(data!)));
+    var response = ProjectsResponse.fromJson(data!);
+    response.projects!.sort((a,b)=> a.index!.compareTo(b.index!));
+    emit(LoadedProjectState(response));
   }
 }

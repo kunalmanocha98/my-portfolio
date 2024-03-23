@@ -30,6 +30,7 @@ import 'firebase_options.dart';
 FirebaseFirestore fireStoreInstance = FirebaseFirestore.instance;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

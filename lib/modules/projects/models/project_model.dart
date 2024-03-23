@@ -27,13 +27,15 @@ class ProjectsResponse {
 class ProjectItem {
   String? name;
   String? image;
+  int? index;
   List<Links>? links;
 
-  ProjectItem({this.name, this.image, this.links});
+  ProjectItem({this.name, this.image, this.links,this.index});
 
   ProjectItem.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
+    index = json['index'];
     if (json['links'] != null) {
       links = [];
       json['links'].forEach((v) {
@@ -46,6 +48,7 @@ class ProjectItem {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['image'] = image;
+    data['index'] = index;
     if (links != null) {
       data['links'] = links!.map((v) => v.toJson()).toList();
     }
