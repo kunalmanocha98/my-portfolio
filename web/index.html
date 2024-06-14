@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -17,6 +17,23 @@
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Kunal Manocha">
+  <meta itemprop="description" content="Flutter Developer">
+  <meta itemprop="image" content="https://i.ibb.co/N3HWkFb/Screenshot-2024-06-09-at-9-31-04-PM.png">
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://kunalmanocha.com">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kunal Manocha">
+  <meta property="og:description" content="Flutter Developer">
+  <meta property="og:image" content="https://i.ibb.co/N3HWkFb/Screenshot-2024-06-09-at-9-31-04-PM.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kunal Manocha">
+  <meta name="twitter:description" content="Flutter Developer">
+  <meta name="twitter:image" content="https://i.ibb.co/N3HWkFb/Screenshot-2024-06-09-at-9-31-04-PM.png">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="This is portfolio application">
 
@@ -31,29 +48,8 @@
 
   <title>portfolio</title>
   <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
