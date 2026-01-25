@@ -16,9 +16,9 @@ class ContactWidgetWeb extends StatelessWidget {
     return BlocBuilder<ContactBloc, ContactState>(
       builder: (BuildContext context, ContactState state) {
         if (state is InitialContactState) {
-          return _contactWidget(state.contactResponse);
+          return _contactWidget(context, state.contactResponse);
         } else if (state is LoadedContactState) {
-          return _contactWidget(state.contactResponse);
+          return _contactWidget(context, state.contactResponse);
         } else {
           return const CircularProgressIndicator();
         }
@@ -26,10 +26,13 @@ class ContactWidgetWeb extends StatelessWidget {
     );
   }
 
-  Widget _contactWidget(ContactResponse contactResponse) {
+  Widget _contactWidget(BuildContext context, ContactResponse contactResponse) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      decoration: BoxDecoration(color: AppColors.contactContainerColorDark),
+      decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.contactContainerColorDark
+              : Colors.grey.shade200),
       child: Center(
         child: SizedBox(
           width: 600,
@@ -38,28 +41,30 @@ class ContactWidgetWeb extends StatelessWidget {
             children: [
               Text(
                 AppStrings.contact,
-                style: TextStyles.expTitleStyle,
+                style: TextStyles.expTitleStyle(context),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 32.0),
                 child: Text(
                   contactResponse.summary ?? "",
-                  style: TextStyles.expDescStyle,
+                  style: TextStyles.expDescStyle(context),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.email_outlined,
-                      color: AppColors.appWhiteColor,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.appWhiteColor
+                          : AppColors.appBlackColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: SelectableText(
                         contactResponse.email ?? "",
-                        style: TextStyles.expDescStyle,
+                        style: TextStyles.expDescStyle(context),
                       ),
                     )
                   ],

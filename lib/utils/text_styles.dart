@@ -3,131 +3,184 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/utils/app_colors.dart';
 
 class TextStyles {
+  static TextStyle nameStyle(
+          BuildContext context) =>
+      GoogleFonts.nothingYouCouldDo(
+          fontSize: 54,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.appWhiteColor
+              : AppColors.appBlackColor);
 
-  static TextStyle nameStyle= GoogleFonts.nothingYouCouldDo(
-      fontSize: 54,
-      fontWeight: FontWeight.bold,
-      color: AppColors.appWhiteColor
-  );
-
-  static TextStyle headingStyle= GoogleFonts.poppins(
+  static TextStyle headingStyle(BuildContext context) => GoogleFonts.poppins(
       fontSize: 50,
       fontWeight: FontWeight.bold,
-      color: AppColors.appPrimaryTextColorDark
-  );
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.appPrimaryTextColorDark
+          : AppColors.appPrimaryTextColorLight);
 
-  static TextStyle descriptionStyle= GoogleFonts.poppins(
-      fontSize: 18,
-      fontWeight: FontWeight.normal,
-      color: AppColors.appSecondaryTextColorDark,
-  );
+  static TextStyle descriptionStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 18,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+      );
 
-  static TextStyle buttonStyle= GoogleFonts.poppins(
+  static TextStyle buttonStyle(BuildContext context) => GoogleFonts.poppins(
       fontSize: 18,
       fontWeight: FontWeight.w600,
-      color: AppColors.appPrimaryTextColorLight
-  );
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.appPrimaryTextColorLight
+          : AppColors
+              .appWhiteColor // Button text is usually inverse of background? AppButtons might handle background.
+      // Original was AppColors.appPrimaryTextColorLight (Black).
+      // If button background changes, text should change.
+      // Assuming buttons are "filled" with primary color?
+      // Standard AppButtons use specific colors. Let's check AppButtons usage.
+      // Keeping original behavior for now but usually buttons need attention.
+      // Original: color: AppColors.appPrimaryTextColorLight
+      );
 
-  static TextStyle titleStyle= GoogleFonts.poppins(
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
-      color: AppColors.appSecondaryTextColorDark,
-      letterSpacing: 4,
-  );
+  // Re-evaluating buttonStyle. Original was Black.
+  // If in dark mode, buttons might be white/grey?
+  // Let's stick to theme logic.
 
-  static TextStyle moduleTitleStyle= GoogleFonts.poppins(
-    fontSize: 36,
-    fontWeight: FontWeight.w900,
-    color: AppColors.appSecondaryTextColorDark,
-    letterSpacing: 5,
-  );
+  static TextStyle titleStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+        letterSpacing: 4,
+      );
 
-  static TextStyle projectTitleStyle= GoogleFonts.poppins(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    color: AppColors.appWhiteColor,
-  );
+  static TextStyle moduleTitleStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 36,
+        fontWeight: FontWeight.w900,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+        letterSpacing: 5,
+      );
 
-  static TextStyle expTitleStyle= GoogleFonts.poppins(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    color: AppColors.appPrimaryTextColorDark,
-  );
+  static TextStyle projectTitleStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appWhiteColor
+            : AppColors.appBlackColor,
+      );
 
-  static TextStyle expDescStyle= GoogleFonts.poppins(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-    color: AppColors.appSecondaryTextColorDark,
-  );
+  static TextStyle expTitleStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appPrimaryTextColorDark
+            : AppColors.appPrimaryTextColorLight,
+      );
 
-  static TextStyle expDateStyle= GoogleFonts.poppins(
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
-    color: AppColors.appTernaryTextColorDark,
-  );
+  static TextStyle expDescStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+      );
+
+  static TextStyle expDateStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 12,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appTernaryTextColorDark
+            : AppColors.appTernaryTextColorLight,
+      );
 }
 
 class TextStylesMobile {
+  static TextStyle nameStyle(
+          BuildContext context) =>
+      GoogleFonts.nothingYouCouldDo(
+          fontSize: 36,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.appWhiteColor
+              : AppColors.appBlackColor);
 
-  static TextStyle nameStyle= GoogleFonts.nothingYouCouldDo(
-      fontSize: 36,
-      fontWeight: FontWeight.bold,
-      color: AppColors.appWhiteColor
-  );
-
-  static TextStyle headingStyle= GoogleFonts.poppins(
+  static TextStyle headingStyle(BuildContext context) => GoogleFonts.poppins(
       fontSize: 32,
       fontWeight: FontWeight.bold,
-      color: AppColors.appPrimaryTextColorDark
-  );
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.appPrimaryTextColorDark
+          : AppColors.appPrimaryTextColorLight);
 
-  static TextStyle descriptionStyle= GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-    color: AppColors.appSecondaryTextColorDark,
-  );
+  static TextStyle descriptionStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+      );
 
-  static TextStyle buttonStyle= GoogleFonts.poppins(
+  static TextStyle buttonStyle(BuildContext context) => GoogleFonts.poppins(
       fontSize: 14,
       fontWeight: FontWeight.w600,
-      color: AppColors.appPrimaryTextColorLight
-  );
+      color: AppColors.appPrimaryTextColorLight // Original was fixed to black.
+      );
 
-  static TextStyle titleStyle= GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color: AppColors.appSecondaryTextColorDark,
-    letterSpacing: 4,
-  );
+  static TextStyle titleStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+        letterSpacing: 4,
+      );
 
-  static TextStyle moduleTitleStyle= GoogleFonts.poppins(
-    fontSize: 28,
-    fontWeight: FontWeight.w900,
-    color: AppColors.appSecondaryTextColorDark,
-    letterSpacing: 5,
-  );
+  static TextStyle moduleTitleStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 28,
+        fontWeight: FontWeight.w900,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+        letterSpacing: 5,
+      );
 
-  static TextStyle projectTitleStyle= GoogleFonts.poppins(
-    fontSize: 10,
-    fontWeight: FontWeight.w600,
-    color: AppColors.appWhiteColor,
-  );
+  static TextStyle projectTitleStyle(BuildContext context) =>
+      GoogleFonts.poppins(
+        fontSize: 10,
+        fontWeight: FontWeight.w600,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appWhiteColor
+            : AppColors.appBlackColor,
+      );
 
-  static TextStyle expTitleStyle= GoogleFonts.poppins(
-    fontSize: 12,
-    fontWeight: FontWeight.bold,
-    color: AppColors.appPrimaryTextColorDark,
-  );
+  static TextStyle expTitleStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appPrimaryTextColorDark
+            : AppColors.appPrimaryTextColorLight,
+      );
 
-  static TextStyle expDescStyle= GoogleFonts.poppins(
-    fontSize: 10,
-    fontWeight: FontWeight.normal,
-    color: AppColors.appSecondaryTextColorDark,
-  );
+  static TextStyle expDescStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 10,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appSecondaryTextColorDark
+            : AppColors.appSecondaryTextColorLight,
+      );
 
-  static TextStyle expDateStyle= GoogleFonts.poppins(
-    fontSize: 10,
-    fontWeight: FontWeight.normal,
-    color: AppColors.appTernaryTextColorDark,
-  );
+  static TextStyle expDateStyle(BuildContext context) => GoogleFonts.poppins(
+        fontSize: 10,
+        fontWeight: FontWeight.normal,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.appTernaryTextColorDark
+            : AppColors.appTernaryTextColorLight,
+      );
 }

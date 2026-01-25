@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/modules/getInTouch/getInTouchView.dart';
+import 'package:portfolio/modules/getInTouch/get_in_touch_view.dart';
 import 'package:portfolio/modules/personal/bloc/personal_bloc.dart';
 import 'package:portfolio/modules/personal/model/personal_detail_model.dart';
 import 'package:portfolio/modules/personal/state/personal_state.dart';
@@ -34,7 +34,7 @@ class PersonalWidgetMob extends StatelessWidget {
           padding: const EdgeInsets.only(top: 24),
           child: Text(
             personalData.name ?? "-",
-            style: TextStylesMobile.nameStyle,
+            style: TextStylesMobile.nameStyle(context),
           ),
         ),
         const Padding(
@@ -50,18 +50,20 @@ class PersonalWidgetMob extends StatelessWidget {
           width: double.infinity,
           child: RichText(
             textAlign: TextAlign.center,
-            text: TextSpan(style: TextStylesMobile.headingStyle, children: [
-              const TextSpan(
-                text: AppStrings.subtitle1,
-              ),
-              const TextSpan(
-                text: AppStrings.subtitle2,
-              ),
-              TextSpan(
-                  text: AppStrings.subtitle3,
-                  style: (TextStylesMobile.headingStyle)
-                      .copyWith(color: Colors.limeAccent))
-            ]),
+            text: TextSpan(
+                style: TextStylesMobile.headingStyle(context),
+                children: [
+                  const TextSpan(
+                    text: AppStrings.subtitle1,
+                  ),
+                  const TextSpan(
+                    text: AppStrings.subtitle2,
+                  ),
+                  TextSpan(
+                      text: AppStrings.subtitle3,
+                      style: (TextStylesMobile.headingStyle(context))
+                          .copyWith(color: Colors.limeAccent))
+                ]),
           ),
         ),
         Container(
@@ -69,7 +71,7 @@ class PersonalWidgetMob extends StatelessWidget {
           child: Text(
             personalData.description ?? "-",
             textAlign: TextAlign.center,
-            style: TextStylesMobile.descriptionStyle,
+            style: TextStylesMobile.descriptionStyle(context),
           ),
         ),
         const SizedBox(
@@ -90,13 +92,13 @@ class PersonalWidgetMob extends StatelessWidget {
                     );
                   },
                 ).then((value) {
-                  if (value != null && value) {
+                  if (value != null && value && context.mounted) {
                     AppLogic.showSnackBar(
                         context, AppStrings.submittedSuccessfully);
                   }
                 });
               },
-            ).getFilledButton(),
+            ).getFilledButton(context),
             const SizedBox(
               width: 20,
             ),
@@ -107,7 +109,7 @@ class PersonalWidgetMob extends StatelessWidget {
                 AppLogic.viewCVPdf(personalData.cv?.cvPath ?? "",
                     personalData.cv?.cvName ?? "");
               },
-            ).getOutlinedButton()
+            ).getOutlinedButton(context)
           ],
         ),
       ],

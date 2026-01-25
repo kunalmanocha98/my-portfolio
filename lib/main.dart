@@ -26,6 +26,9 @@ import 'package:portfolio/utils/app_routes.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'modules/home/home_page.dart';
 import 'firebase_options.dart';
+import 'package:portfolio/modules/theme/bloc/theme_bloc.dart';
+import 'package:portfolio/modules/theme/state/theme_state.dart';
+import 'package:portfolio/utils/app_theme.dart';
 
 FirebaseFirestore fireStoreInstance = FirebaseFirestore.instance;
 
@@ -52,7 +55,8 @@ class MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (BuildContext context) {
-            return PersonalBloc(InitialPersonalState(PersonalDetailsResponse()));
+            return PersonalBloc(
+                InitialPersonalState(PersonalDetailsResponse()));
           },
         ),
         BlocProvider(
@@ -85,20 +89,34 @@ class MyAppState extends State<MyApp> {
             return HomeBloc(InitialHomeState());
           },
         ),
-      ],
-      child: MaterialApp(
-        title: AppStrings.appName,
-        debugShowCheckedModeBanner: false,
-        // onGenerateRoute: _routes(),
-        initialRoute: Routes.initialRoute,
-        routes: {
-          Routes.initialRoute: (context) => const HomePage(),
-          // Routes.homeRoute: (context) => const HomePage(),
-        },
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black87),
-          useMaterial3: true,
+        BlocProvider(
+          create: (BuildContext context) {
+            return ThemeBloc();
+          },
         ),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: AppStrings.appName,
+            builder: (BuildContext context, Widget? widget) {
+              ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+                return Center(child: Text("Error: ${errorDetails.exception}"));
+              };
+              return widget!;
+            },
+            debugShowCheckedModeBanner: false,
+            // onGenerateRoute: _routes(),
+            initialRoute: Routes.initialRoute,
+            routes: {
+              Routes.initialRoute: (context) => const HomePage(),
+              // Routes.homeRoute: (context) => const HomePage(),
+            },
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state.themeMode,
+          );
+        },
       ),
     );
   }

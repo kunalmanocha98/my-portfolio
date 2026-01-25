@@ -8,27 +8,31 @@ import 'package:portfolio/utils/app_logic.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/utils/text_styles.dart';
 
-
 class ContactWidgetMob extends StatelessWidget {
   const ContactWidgetMob({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ContactBloc,ContactState>(builder: (BuildContext context, ContactState state) {
-      if(state is InitialContactState){
-        return _contactWidget(state.contactResponse);
-      }else if(state is LoadedContactState){
-        return _contactWidget(state.contactResponse);
-      }else{
-        return const CircularProgressIndicator();
-      }
-    },);
+    return BlocBuilder<ContactBloc, ContactState>(
+      builder: (BuildContext context, ContactState state) {
+        if (state is InitialContactState) {
+          return _contactWidget(context, state.contactResponse);
+        } else if (state is LoadedContactState) {
+          return _contactWidget(context, state.contactResponse);
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 
-  Widget _contactWidget(ContactResponse contactResponse){
+  Widget _contactWidget(BuildContext context, ContactResponse contactResponse) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      decoration: BoxDecoration(color: AppColors.contactContainerColorDark),
+      decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.contactContainerColorDark
+              : Colors.grey.shade200),
       child: Center(
         child: SizedBox(
           child: Column(
@@ -36,28 +40,30 @@ class ContactWidgetMob extends StatelessWidget {
             children: [
               Text(
                 AppStrings.contact,
-                style:TextStylesMobile.expTitleStyle,
+                style: TextStylesMobile.expTitleStyle(context),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Text(
                   contactResponse.summary ?? "",
-                  style: TextStylesMobile.expDescStyle,
+                  style: TextStylesMobile.expDescStyle(context),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 14),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.email_outlined,
-                      color: AppColors.appWhiteColor,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.appWhiteColor
+                          : AppColors.appBlackColor,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left:8),
+                      padding: const EdgeInsets.only(left: 8),
                       child: SelectableText(
                         contactResponse.email ?? "",
-                        style: TextStylesMobile.expDescStyle,
+                        style: TextStylesMobile.expDescStyle(context),
                       ),
                     )
                   ],
@@ -66,12 +72,16 @@ class ContactWidgetMob extends StatelessWidget {
               Row(
                 children: List.generate(
                   (contactResponse.socialLinks ?? []).length,
-                      (index) => InkWell(
-                    onTap: (){
-                      AppLogic.openUrl(contactResponse.socialLinks?[index].socialLinkUrl??"","new_window$index");
+                  (index) => InkWell(
+                    onTap: () {
+                      AppLogic.openUrl(
+                          contactResponse.socialLinks?[index].socialLinkUrl ??
+                              "",
+                          "new_window$index");
                     },
                     child: Padding(
-                      padding: EdgeInsets.only(left: index == 0 ? 0 : 8.0, right: 8,top:12),
+                      padding: EdgeInsets.only(
+                          left: index == 0 ? 0 : 8.0, right: 8, top: 12),
                       child: Image.network(
                         contactResponse.socialLinks![index].icon!,
                         width: 20,

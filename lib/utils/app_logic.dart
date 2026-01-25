@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class AppLogic {
   static openUrl(String url, String name) async {
     if (kIsWeb) {
-      await launchUrl(Uri.parse(url),webOnlyWindowName: name);
+      await launchUrl(Uri.parse(url), webOnlyWindowName: name);
     } else {
       if (await canLaunchUrl(Uri.parse(url))) {
         await launchUrl(Uri.parse(url));
@@ -31,15 +31,17 @@ class AppLogic {
     var snackBar = SnackBar(
       margin: const EdgeInsets.all(16),
       behavior: SnackBarBehavior.floating,
-     showCloseIcon: true,closeIconColor: AppColors.appWhiteColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12)
-      ),
+      showCloseIcon: true,
+      closeIconColor: AppColors.appWhiteColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       content: ListTile(
-        leading: const Icon(Icons.check_circle,color: Colors.green,),
+        leading: const Icon(
+          Icons.check_circle,
+          color: Colors.green,
+        ),
         title: Text(
           message,
-          style: TextStyles.expDescStyle,
+          style: TextStyles.expDescStyle(context),
         ),
       ),
     );

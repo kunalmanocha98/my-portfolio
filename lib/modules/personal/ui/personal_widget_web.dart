@@ -7,7 +7,7 @@ import '../../../components/app_buttons.dart';
 import '../../../utils/app_logic.dart';
 import '../../../utils/strings.dart';
 import '../../../utils/text_styles.dart';
-import '../../getInTouch/getInTouchView.dart';
+import '../../getInTouch/get_in_touch_view.dart';
 import '../model/personal_detail_model.dart';
 
 class PersonalWidgetWeb extends StatelessWidget {
@@ -37,7 +37,7 @@ class PersonalWidgetWeb extends StatelessWidget {
           padding: const EdgeInsets.only(top: 32.0),
           child: Text(
             personalData.name ?? "-",
-            style: TextStyles.nameStyle,
+            style: TextStyles.nameStyle(context),
           ),
         ),
         const Padding(
@@ -53,7 +53,7 @@ class PersonalWidgetWeb extends StatelessWidget {
           width: double.infinity,
           child: RichText(
             textAlign: TextAlign.center,
-            text: TextSpan(style: TextStyles.headingStyle, children: [
+            text: TextSpan(style: TextStyles.headingStyle(context), children: [
               const TextSpan(
                 text: AppStrings.subtitle1,
               ),
@@ -62,7 +62,7 @@ class PersonalWidgetWeb extends StatelessWidget {
               ),
               TextSpan(
                   text: AppStrings.subtitle3,
-                  style: (TextStyles.headingStyle)
+                  style: (TextStyles.headingStyle(context))
                       .copyWith(color: Colors.limeAccent))
             ]),
           ),
@@ -75,7 +75,7 @@ class PersonalWidgetWeb extends StatelessWidget {
           child: Text(
             personalData.description ?? "-",
             textAlign: TextAlign.center,
-            style: TextStyles.descriptionStyle,
+            style: TextStyles.descriptionStyle(context),
           ),
         ),
         const SizedBox(
@@ -96,13 +96,13 @@ class PersonalWidgetWeb extends StatelessWidget {
                     );
                   },
                 ).then((value) {
-                  if (value != null && value) {
+                  if (value != null && value && context.mounted) {
                     AppLogic.showSnackBar(
                         context, AppStrings.submittedSuccessfully);
                   }
                 });
               },
-            ).getFilledButton(),
+            ).getFilledButton(context),
             const SizedBox(
               width: 20,
             ),
@@ -113,7 +113,7 @@ class PersonalWidgetWeb extends StatelessWidget {
                 AppLogic.viewCVPdf(personalData.cv?.cvPath ?? "",
                     personalData.cv?.cvName ?? "");
               },
-            ).getOutlinedButton()
+            ).getOutlinedButton(context)
           ],
         ),
       ],

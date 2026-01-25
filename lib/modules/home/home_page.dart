@@ -13,13 +13,22 @@ import '../personal/ui/personal_widget_view.dart';
 import '../projects/ui/project_widget_view.dart';
 import '../techStack/ui/tech_stack_widget.dart';
 
+import 'package:portfolio/modules/theme/bloc/theme_bloc.dart';
+import 'package:portfolio/modules/theme/event/theme_event.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<ThemeBloc>().add(ThemeToggleEvent());
+        },
+        child: const Icon(Icons.brightness_6_outlined),
+      ),
       body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
         return ResponsiveWidget(child: (context, isMobile) {
           var dimens = Dimensions(isMobile);
@@ -59,14 +68,15 @@ class HomePage extends StatelessWidget {
               Visibility(
                 visible: state is LoadingHomeState,
                 child: Container(
-                  color: Colors.black,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   child: Center(
                     child: SizedBox(
                       child: TextLiquidFill(
                         text: AppStrings.appName,
                         loadDuration: const Duration(seconds: 2),
                         waveColor: Colors.blueAccent,
-                        boxBackgroundColor: Colors.black,
+                        boxBackgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
                         textStyle: TextStyle(
                           fontSize: isMobile ? 36 : 54.0,
                           fontWeight: FontWeight.bold,
