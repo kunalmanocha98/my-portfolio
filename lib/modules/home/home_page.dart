@@ -1,13 +1,14 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/components/background_animation_widget.dart';
+import 'package:portfolio/components/loading_widget.dart';
 import 'package:portfolio/components/responsive_widget.dart';
 import 'package:portfolio/modules/education/ui/education_view.dart';
 import 'package:portfolio/modules/experience/ui/exp_widget_view.dart';
 import 'package:portfolio/modules/home/bloc/home_bloc.dart';
 import 'package:portfolio/modules/home/state/home_state.dart';
 import 'package:portfolio/utils/dimens.dart';
-import 'package:portfolio/utils/strings.dart';
+
 import '../contact/ui/contact_page_view.dart';
 import '../personal/ui/personal_widget_view.dart';
 import '../projects/ui/project_widget_view.dart';
@@ -34,6 +35,7 @@ class HomePage extends StatelessWidget {
           var dimens = Dimensions(isMobile);
           return Stack(
             children: [
+              const BackgroundAnimationWidget(),
               SingleChildScrollView(
                 child: SizedBox(
                     width: double.infinity,
@@ -70,19 +72,7 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Center(
-                    child: SizedBox(
-                      child: TextLiquidFill(
-                        text: AppStrings.appName,
-                        loadDuration: const Duration(seconds: 2),
-                        waveColor: Colors.blueAccent,
-                        boxBackgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                        textStyle: TextStyle(
-                          fontSize: isMobile ? 36 : 54.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    child: LoadingWidget(isMobile: isMobile),
                   ),
                 ),
               )
